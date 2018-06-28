@@ -98,13 +98,37 @@ addMomInfo('Biff', 'Biff Jr', '3')
 addMomInfo('Milo','','')
 
 #Users can add new data here
-flag = input("Do you want to input new data to parents?(yes:1 no:0)")
+while True:
+    flag = raw_input("Do you want to input new data to parents?(yes:1 no:0)")
+    if not flag.isdigit():
+        print "Enter Error content.(should be 0 or 1)"
+        continue
+    if int(flag) == 0 or int(flag) == 1:
+        break
+    else:
+        print "Enter Error content.(should be 0 or 1)"
 while flag:
     mom = raw_input("Please input Mom's name:")
     child = raw_input("Please input Child's name:")
-    age = raw_input("Please input Child's age:")
+    while True:
+        age = raw_input("Please input Child's age:(1~6)")
+        if not age.isdigit():
+            print "Enter Error content.(should be 1~6)"
+            continue
+        if int(age) >= 1 and int(age) <= 6:
+            break
+        else:
+            print "Enter Error content.(should be 1~6)"
     addMomInfo(mom, child, age)
-    flag = input("Do you want to input new data to parents?(yes:1 no:0)")
+    while True:
+        flag = raw_input("Do you want to input new data to parents?(yes:1 no:0)")
+        if not flag.isdigit():
+            print "Enter Error content.(should be 0 or 1)"
+            continue
+        if int(flag) == 0 or int(flag) == 1:
+            break
+        else:
+            print "Enter Error content.(should be 0 or 1)"
 json_str = json.dumps(parents)
 
 #Write down the completed parents data into parents.json
@@ -124,12 +148,37 @@ addActivities('3','Try a simple puzzle.')
 addActivities('3','Read a story together.')
 
 #Users can add new data here
-index = input("Do you want to input new data to activities?(yes:1 no:0)")
+while True:
+    index = raw_input("Do you want to input new data to activities?(yes:1 no:0)")
+    if not index.isdigit():
+        print "Enter Error content.(should be 0 or 1)"
+        continue
+    if int(index) == 0 or int(index) == 1:
+        break
+    else:
+        print "Enter Error content.(should be 0 or 1)"
 while index:
     age = raw_input("Please input activity's age:")
-    act = raw_input("Please input the activity for your input age:")
+    while True:
+        age = raw_input("Please input activity's age:(1~6)")
+        if not age.isdigit():
+            print "Enter Error content.(should be 1~6)"
+            continue
+        if int(age) >= 1 and int(age) <= 6:
+            break
+        else:
+            print "Enter Error content.(should be 1~6)"
+    act = raw_input("Please input the activity for this age's child:")
     addActivities(age,act)
-    index = input("Do you want to input new data to activities?(yes:1 no:0)")
+    while True:
+        index = raw_input("Do you want to input new data to activities?(yes:1 no:0)")
+        if not index.isdigit():
+            print "Enter Error content.(should be 0 or 1)"
+            continue
+        if int(index) == 0 or int(index) == 1:
+            break
+        else:
+            print "Enter Error content.(should be 0 or 1)"
 json_act = json.dumps(activities)
 #Write down the completed activities data into activities.json
 with open('activities.json', 'w') as f:
