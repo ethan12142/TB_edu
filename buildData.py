@@ -1,3 +1,19 @@
+'''
+Below is the base data requirement.
+1. Any mother may has more than one child, so I change the type of mother in parents to list,
+   so that we can save as more as children.
+2. in order to record which activities mother had used, so I add a list into parents to track
+   their schedules.
+Base on these two points, my parents structure becomes:
+
+parents = {
+    'Henry': {'childName': 'Calvin', 'age': 1, act: 0},
+    'Ada': {'childName': 'Lily', 'age': 4, act: 0},
+    'Emilia': {'childName': 'Petra', 'age': 2, act: 0},
+    'Biff': {'childName': 'Biff Jr', 'age': 3, act: 0},
+    'Milo': {'childName': '', 'age': '', act: 0}
+}
+'''
 # parents = {
 #     'Henry': {'childName': 'Calvin', 'age': 1},
 #     'Ada': {'childName': 'Lily', 'age': 4},
@@ -32,18 +48,11 @@
 #             ]
 #     }
 # ]
+
 import json
 from collections import defaultdict
 
-# def del_u(s):
-#     """remove the leading unicode designator from a string"""
-#     new_s = ''
-#     if s.startswith("u'"):
-#         new_s = s.replace("u'", "'", 1)
-#     elif s.startswith('u"'):
-#         new_s = s.replace('u"', '"', 1)
-#     return new_s
-
+#A function which creates Mom's infomation as a dict
 def addMomInfo(momName, childName, age):
     monInfo = defaultdict(list)
     monInfo['childName'].append(childName)
@@ -55,15 +64,9 @@ def addMomInfo(momName, childName, age):
         parents[momName]['childName'].append(childName)
         parents[momName]['age'].append(age)
         parents[momName]['act'].append('0')
-    # print "Input Mom:%s",momName, "Child:%s",childName, "Age:%s",age ," succeessfully!!"
     print "Input Mom:%10s, Child:%10s, Age:%s , succeessfully!!" % (momName,childName,age)
-# parents = {}
-# monInfo = defaultdict(list)
-# monInfo['childName'].append('Calvin')
-# monInfo['childName'].append('Bill')
-# monInfo['age'].append('3')
-# monInfo['age'].append('2')
 
+#A function which creates Activities infomation as a list
 def addActivities(age, act):
     exis = 0
     if len(activities) == 0:
@@ -86,6 +89,7 @@ def addActivities(age, act):
             activities.append(acts)
             print "Input age:%2s, activity:%50s , succeessfully!!" % (age,act)
 
+#I manually initialize the base parents data
 parents = {}
 addMomInfo('Henry','Calvin','1')
 addMomInfo('Ada', 'Lily', '4')
@@ -93,10 +97,7 @@ addMomInfo('Emilia', 'Petra', '2')
 addMomInfo('Biff', 'Biff Jr', '3')
 addMomInfo('Milo','','')
 
-# addMomInfo('Milo','tttt','6')
-# print parents['Milo']['childName'] == ['']
-# parents['Milo'] = {}
-
+#Users can add new data here
 flag = input("Do you want to input new data to parents?(yes:1 no:0)")
 while flag:
     mom = raw_input("Please input Mom's name:")
@@ -105,10 +106,12 @@ while flag:
     addMomInfo(mom, child, age)
     flag = input("Do you want to input new data to parents?(yes:1 no:0)")
 json_str = json.dumps(parents)
+
+#Write down the completed parents data into parents.json
 with open('parents.json', 'w') as f:
     json.dump(json_str, f)
-# print parents
 
+#I manually initialize the base activities data
 activities = []
 addActivities('1','Go outside and feel surfaces.')
 addActivities('1','Try singing a song together.')
@@ -120,6 +123,7 @@ addActivities('3','Build with blocks.')
 addActivities('3','Try a simple puzzle.')
 addActivities('3','Read a story together.')
 
+#Users can add new data here
 index = input("Do you want to input new data to activities?(yes:1 no:0)")
 while index:
     age = raw_input("Please input activity's age:")
@@ -127,6 +131,6 @@ while index:
     addActivities(age,act)
     index = input("Do you want to input new data to activities?(yes:1 no:0)")
 json_act = json.dumps(activities)
+#Write down the completed activities data into activities.json
 with open('activities.json', 'w') as f:
     json.dump(json_act, f)
-# print activities

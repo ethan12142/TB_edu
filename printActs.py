@@ -2,27 +2,27 @@ import json
 from collections import defaultdict
 import ast
 
+#load parents.json file and save the data into parents
 with open('parents.json', 'r') as f:
     parents = json.load(f)
 pars = ast.literal_eval(parents)
+#load activities.json file and save the data into acts
 with open('activities.json', 'r') as f:
     acts = json.load(f)
 acts = ast.literal_eval(acts)
-for i in range(len(acts)):
-    print acts[i]['age'][0]
-# print acts[0]['age'][0]
-# print len(pars['Henry']['age'])
-# print type(int(pars['Henry']['act'][0]))
-print len(acts[0]['activity'])
+
+#These two parameters are used to make sure there are no more activity need to send
 check = 0
 flag = 1
 while check != flag:
     flag = check
     for mom in pars.keys():
-        # print mom
+        # Filter Mom who has no registered chldren
         if pars[mom]['age'][0] != '':
+            #scan all children who belong same Mom
             for ages in range(len(pars[mom]['age'])):
                 tmp_age = pars[mom]['age'][ages]
+                #circle activities to find target activity to send
                 for i in range(len(acts)):
                     if pars[mom]['act'][ages] == '-1':
                         break
@@ -36,4 +36,3 @@ while check != flag:
                                 print "Curriculum complete!"
                                 pars[mom]['act'][ages] = '-1'
                             break
-print pars
