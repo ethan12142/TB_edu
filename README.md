@@ -5,5 +5,6 @@ How to run it?
 Future works:
 1. Make the print out contents more friendly.
 2. Collect raw data(maybe csv format) and add automatic method to build up our data(assume json format)
-3. Add new functions as we need 
-4. Bug fix
+3. testSMS.py can work, so it can combine with other .py file to send Message to mothers
+4. Add new functions as we need 
+5. Bug fix
