@@ -107,7 +107,7 @@ while True:
         break
     else:
         print "Enter Error content.(should be 0 or 1)"
-while flag:
+while int(flag):
     mom = raw_input("Please input Mom's name:")
     child = raw_input("Please input Child's name:")
     while True:
@@ -157,7 +157,7 @@ while True:
         break
     else:
         print "Enter Error content.(should be 0 or 1)"
-while index:
+while int(index):
     age = raw_input("Please input activity's age:")
     while True:
         age = raw_input("Please input activity's age:(1~6)")

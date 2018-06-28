@@ -30,7 +30,7 @@ while check != flag:
                         num = pars[mom]['act'][ages]
                         if int(num) != len(acts[i]['activity']):
                             check += 1
-                            print "Dear", mom, ": The activity for your child,",pars[mom]['childName'][ages],", is \" ",acts[i]['activity'][int(num)],"\"", num
+                            print "Dear", mom, ": The activity for your child,",pars[mom]['childName'][ages],", is \" ",acts[i]['activity'][int(num)],"\""
                             pars[mom]['act'][ages] = int(pars[mom]['act'][ages]) + 1
                             if int(pars[mom]['act'][ages]) == len(acts[i]['activity']):
                                 print "Curriculum complete!"
